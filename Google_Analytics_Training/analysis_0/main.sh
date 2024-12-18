@@ -43,7 +43,7 @@ download_data(){
 	if [[ $val == "X0" ]]
 	then 
 	    # Generate a new ROOT access key : This information gets sent to the /default/download/path/.aws/credentials and /default/download/path/.aws/config files
-	    # AWS site: Go to https://aws.amazon.com/fr/ 
+	    # AWS site: Go to https://aws.amazon.com 
 	    # 	- Services - Security, Identity, & Compliance - IAM
 	    # 	- To go to root user settings : Quick Links - My security credentials
 	    # 	- Open CloudShell - aws iam create-access-key
