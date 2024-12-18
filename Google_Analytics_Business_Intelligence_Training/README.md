@@ -1,4 +1,4 @@
-# Google_fiber_analysis
+# google_analytics_business_intelligence_training
 
 The purpose of this analysis was to evaluate customer retention of Internet Service, with respect to the frequency of repeat calls to the Internet Service provider due to internet service problems, using a Google Fiber dataset.
 
