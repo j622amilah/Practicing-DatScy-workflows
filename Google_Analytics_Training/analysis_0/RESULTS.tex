@@ -176,29 +176,9 @@ The numerical z-statistic results show that member statistically have shorter tr
 
 The categorical probability of occurrence of each feature for member$\_$casual shows that the dataset was statistically bias for male member data ($p < 0.05$); roughly 30 percent of the data consisted of samples from male members. 
 
-The key factors/features that were selected for the kmeans, a  clustering algorithm that is used to detect outliers, were the most statistically significant features found that distinguished members from causal riders; trip time, birthyear, and rideable type were found to be the most statistically relavant features in order of significance. Figure \ref{accuracy_result} shows that the prediction accuracy of kmeans for the test dataset was 98\%.
-% -------------------- Figure  --------------------
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=0.9\linewidth]{accuracy_result.png}
-\end{center}
-\caption{Accuracy of test dataset of the kmeans model.}
-\label{accuracy_result}
-\end{figure}
-% --------------------
+The key factors/features that were selected for the kmeans, a  clustering algorithm that is used to detect outliers, were the most statistically significant features found that distinguished members from causal riders; trip time, birthyear, and rideable type were found to be the most statistically relavant features in order of significance. The prediction accuracy of kmeans model for the test dataset was 98.25049%; refer to ACCURACY_RESULT in main.sh.
 
-Feature recommendations were calculated by finding the feature furthest away from the member cluster. The equation in the Appendix was implemented to estimate the location of the member cluster, such that the feature furthest away from the member cluster could be found and given as a marketing recommendation to convert casual users into members. Figure \ref{recommendation_results} shows the marketing recommendations that were given to casual users; trip$\_$time and birthyear were the most recommended forms of marketing which were in alignment with numerical feature statistical results.
-% -------------------- Figure  --------------------
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=0.9\linewidth]{recommendation_results.png}
-\end{center}
-\caption{Recommendation result counts for members and casual user for the test dataset.}
-\label{recommendation_results}
-\end{figure}
-% --------------------
-This analysis shows that kmeans is an effective way to recommend marketing using outlier detection of features.
-
+Feature recommendations were calculated by finding the feature furthest away from the member cluster. The equation in the Appendix was implemented to estimate the location of the member cluster, such that the feature furthest away from the member cluster could be found and given as a marketing recommendation to convert casual users into members. The results shows that the marketing recommendations that were given to casual users; trip time and birthyear were the most recommended forms of marketing which were in alignment with numerical feature statistical results. This analysis shows that kmeans is an effective way to recommend marketing using outlier detection of features. Please refer to RECOMMENDATION_RESULT in main.sh.
 
 \subsection{Evaluation metrics}
 
