@@ -1,3 +1,3 @@
-# ML_DL_modeling
+# Practicing-DatScy-workflows 
 
-A joint repository with all Machine Learning and Deep Learning modeling endeavors!
+The purpose of this repository is to store additional code for the Practicing DatScy blogs.   
