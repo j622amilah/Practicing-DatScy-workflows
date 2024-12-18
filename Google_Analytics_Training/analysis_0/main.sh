@@ -1223,8 +1223,7 @@ fi
 
 # ---------------------------------------------
 
-
-# Calculate accuracy using the kmeans_model_cosine_PREDICTED_results_TABLE
+# ACCURACY_RESULT: Calculate accuracy using the kmeans_model_cosine_PREDICTED_results_TABLE
 export val=$(echo "X0")
 
 if [[ $val == "X0" ]]
@@ -1242,6 +1241,11 @@ then
 
 fi
 
++------------------+
+|     Accuracy     |
++------------------+
+| 98.2504964939843 |
++------------------+
 
 # ---------------------------------------------
 
@@ -1281,7 +1285,7 @@ fi
 # ---------------------------------------------
 
 
-# Calculate the recommendation using the kmeans_model_cosine_PREDICTED_results_TABLE2
+# RECOMMENDATION_RESULT: Calculate the recommendation using the kmeans_model_cosine_PREDICTED_results_TABLE2
 export PREDICTED_results_TABLE_name3=$(echo "kmeans_model_cosine_PREDICTED_results_TABLE3_MIN_MAX_SCALER")
 
 export val=$(echo "X0")
@@ -1306,6 +1310,18 @@ then
 
 
 fi
+
+Operation "operations/acat.p2-189544826227-8200ce85-dc45-4896-97ee-083c1e740c94" finished successfully.
+Updated property [core/project].
+Calculate recommendation based on outliers:
++---------------+----------------+---------------------------+
+| member_casual | recommendation | counts_of_recommendations |
++---------------+----------------+---------------------------+
+| member        | no marketing   |                   3567012 |
+| casual	| trip_time      |		     2197170 |
+| casual	| birthyear      |                   1369842 |
++---------------+----------------+---------------------------+
+
 
 
 # ---------------------------------------------
