@@ -38,7 +38,7 @@ The datasets are fictionalized versions of the actual data this team works with.
 ## Business problem: 
 The team’s ultimate goal is to communicate with the customers to reduce the call volume and increase customer satisfaction and improve operational optimization. 
 
-The dashboard (https://script.google.com/macros/s/XXXXXXXX/exec) gives viewers information about customer call behavior with respect to their contract type and internet service/market type; the Strategy document further explains each dashboard figure with respect to the question. The number of calls were totaled per problem type, such that relationships between call volume, problem type, contract, and internet service/market type could be identified. 
+The dashboard (https://script.google.com/macros/s/XXXXXXXX/exec - Refer to Code.gs) gives viewers information about customer call behavior with respect to their contract type and internet service/market type; the Strategy document further explains each dashboard figure with respect to the question. The number of calls were totaled per problem type, such that relationships between call volume, problem type, contract, and internet service/market type could be identified. 
 
 ## Stakeholders: 
 The major stakeholders of this project are the following list of individuals:
@@ -91,6 +91,6 @@ The intended audience for this dashboard is a technical audience including the H
 
 
 ## Dashboard Functionality
-A dashboard was constructed from a BigQuery Google connected sheet using Google Apps Script GET Request doGet function; the web app is located at https://script.google.com/macros/s/XXXXXXXX/exec for anyone to view updated information regarding the BigQuery SQL database. This dashboard solution is automatic and directly connected to the BigQuery SQL database; the diagrams change when the BigQuery SQL database has updated changes.
+A dashboard was constructed from a BigQuery Google connected sheet using Google Apps Script GET Request doGet function; the web app is located at (https://script.google.com/macros/s/XXXXXXXX/exec - Refer to Code.gs) for anyone to view updated information regarding the BigQuery SQL database. This dashboard solution is automatic and directly connected to the BigQuery SQL database; the diagrams change when the BigQuery SQL database has updated changes.
 
 A dashboard could have been created using several methods: Looker/LookML, Tableau, Google Apps Script, Cloud Function. Connecting the BigQuery database to a Google connected sheet and deploying the connected sheet with Google Apps Scripts was faster than the procedure to connect the BigQuery database to Looker/LookML, Tableau, and Cloud Function. The Looker/LookML, Tableau, and Cloud Function methods required more time investment to learn how to use their specific protocol and/or language. Google Apps Scripts uses a JavaScript derived language called Google Scripts and HTML thus coding the deployment functionality was with well-known familiar tools.
