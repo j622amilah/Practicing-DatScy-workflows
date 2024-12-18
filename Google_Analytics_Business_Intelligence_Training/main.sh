@@ -36,7 +36,7 @@ fi
 
 
 # ---------------------------------------------
-# Obtenir des informations Authorization
+# Obtain Authorization Information
 # ---------------------------------------------
 export val=$(echo "X1")
 
