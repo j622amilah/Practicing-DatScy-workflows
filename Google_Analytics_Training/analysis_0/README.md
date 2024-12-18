@@ -11,12 +11,11 @@ The project can be improved by collecting more data from casual users and women;
 The business objective provides a list of problems that need to be solved, with measurable objectives of successful for each solved problem. The first problem should correspond with the last problem (Act), because it shows that the main global problem was indeed solved by the specific problems.
 
 The problems that need to be solved for the bikeshare case study, from general to specific, are :
-• Cyclistic bikes needs to gain more money to stay in business, by converting casual users into members. Measurable success for this task is creating a marketing campaign that increases more new members in comparison to casual users.
-• In order to convert casual users into members, one needs to understand which key factors/features identify a person as a member in comparison to a casual user. Measurable success for this task is to statistically prove which factors/features are statistically different for casual users in comparison to members.
-• A model needs to be built using the key factors/features, such that one can predict whether a new customer will be a member or a casual user. Measurable success for this task is to measure prediction accuracy of 95% or better in identifying members in comparison to casual users, using a test dataset.
-• If a new customer is predicted to be a casual user, the model needs to show which factor/feature of the new customer’s profile needs to be modified such that they would become a member. Measurable success is to rank the factors/features from strongest to weakest predictors for a member, using either the statistical analysis significance of factors or feature
-importance/SHAP. The model should recommend improvements of the strongest member predictors more than the weakest member predictors, measurable success that recommendations are correct is to perform a group by count of how many times the model recommended a feature for predicted casual users.
-• Act: Marketing needs to create marketing campaigns for each of the key factors/features, such that casual users deficient in these key factors/features would be given marketing that would change their ideas/behavior about the member-deficient key factors/features such that they would start to think/behave similarly to members. Measurable success for this task is observing an increase in more new members in comparison to casual users, as was stated in the first problem/objective; thus solving the global problem by executing the specific problems.
+1. Cyclistic bikes needs to gain more money to stay in business, by converting casual users into members. Measurable success for this task is creating a marketing campaign that increases more new members in comparison to casual users.
+2. In order to convert casual users into members, one needs to understand which key factors/features identify a person as a member in comparison to a casual user. Measurable success for this task is to statistically prove which factors/features are statistically different for casual users in comparison to members.
+3. A model needs to be built using the key factors/features, such that one can predict whether a new customer will be a member or a casual user. Measurable success for this task is to measure prediction accuracy of 95% or better in identifying members in comparison to casual users, using a test dataset.
+4. If a new customer is predicted to be a casual user, the model needs to show which factor/feature of the new customer’s profile needs to be modified such that they would become a member. Measurable success is to rank the factors/features from strongest to weakest predictors for a member, using either the statistical analysis significance of factors or feature importance/SHAP. The model should recommend improvements of the strongest member predictors more than the weakest member predictors, measurable success that recommendations are correct is to perform a group by count of how many times the model recommended a feature for predicted casual users.
+5. Act: Marketing needs to create marketing campaigns for each of the key factors/features, such that casual users deficient in these key factors/features would be given marketing that would change their ideas/behavior about the member-deficient key factors/features such that they would start to think/behave similarly to members. Measurable success for this task is observing an increase in more new members in comparison to casual users, as was stated in the first problem/objective; thus solving the global problem by executing the specific problems.
 
 # Project Background
 Cyclistic is a bike-share program that features more than 5,800 bicycles and 600 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8 percent of riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30 percent use them to commute to work each day.
@@ -24,9 +23,9 @@ Cyclistic is a bike-share program that features more than 5,800 bicycles and 600
 Future success of Cyclistic depends on maximizing the number of annual memberships, thus it is necessary to design a new marketing strategy to convert casual riders into annual members. Casual riders are customers who purchase single-ride or full-day passes, and Cyclistic members are customers who purchase annual memberships.
 
 There are three teams that operate Cyclistic :
-• Manager: responsible for promoting the program (social, media, email, etc)
-• Marketing analytics team : responsible for doing the data analysis
-• Executive team: responsible for approving the proposal
+- Manager: responsible for promoting the program (social, media, email, etc)
+- Marketing analytics team : responsible for doing the data analysis
+- Executive team: responsible for approving the proposal
 
 # Baseline Solution
 The Baseline Solution (top three recommendations) is to :
