@@ -6,10 +6,285 @@ clear
 
 export cur_path=$(pwd)
 
-source ./GCP_bigquery_case_study_library.sh
+# This library contains two function that are used: organize_zip_files_from_datasource_download and upload_csv_files.
+# The functions are given below.
+# source ./GCP_bigquery_case_study_library.sh
 
 cd $cur_path
 # cd /../Specialization_Google_Analytics_Business_Intelligence_Training/analysis_0
+
+
+# ---------------------------
+# Functions START
+# ---------------------------
+organize_zip_files_from_datasource_download(){
+ 
+ # Automatically organizes a folder of zipped csv files into 3 folders: csvdata, remaining_files, zipdata
+ 
+ # Inputs:
+ # $1 = path_folder_2_organize (path where the zip files are located) (this should exist)
+ # $2 = ingestion_folder (folder name to put the files into) = output_folder_NAME (one chooses this)
+ # $3 = path_outside_of_ingestion_folder (path where the ingestion folder should be located) = output_folder_PATH (one chooses this)
+ 
+ # Path inside of the ingestion folder
+ export path_ingestion_folder=$(echo "$3/$2")
+ 
+ # ---------------------------------------------
+ # Make ingestion folder and transfer files
+ # ---------------------------------------------
+ export val=$(echo "X0")
+
+ if [[ $val == "X0" ]]
+ then
+
+     mkdir $path_ingestion_folder
+     
+     cp -a $1/. $path_ingestion_folder
+     
+ fi
+
+ # ---------------------------------------------
+
+ # ---------------------------------------------
+ # Unzip files
+ # ---------------------------------------------
+ export val=$(echo "X0")
+
+ if [[ $val == "X0" ]]
+ then 
+
+     # Unzip file options
+     # -f  freshen existing files, create none
+     # -n  never overwrite existing files
+     # -o  overwrite files WITHOUT prompting
+
+     cd $path_ingestion_folder
+
+     ls *.zip > arr
+     
+     for i in $(cat arr)
+     do
+        unzip -o $i
+     done
+
+     mkdir zipdata
+     mv *.zip zipdata
+
+     # Clean-up treatment files
+     rm arr
+     
+ fi
+
+ # ---------------------------------------------
+ 
+ 
+ # Rename all the files so they do not have any spaces
+ for f in *\ *; do mv "$f" "${f// /_}"; done
+ 
+ 
+ # ---------------------------------------------
+ # Convert xlsx files to csv
+ # ---------------------------------------------
+ export val=$(echo "X0")
+
+ if [[ $val == "X0" ]]
+ then 
+
+     # Unzip file options
+     # -f  freshen existing files, create none
+     # -n  never overwrite existing files
+     # -o  overwrite files WITHOUT prompting
+
+     cd $path_ingestion_folder
+     echo "Output: " 
+     echo $path_ingestion_folder
+     
+     # Read all file names into a file
+     ls *.xlsx > arr
+     
+     
+     for i in $(cat arr)
+     do
+        echo $i
+        libreoffice --headless --convert-to csv $i
+     done
+
+     # Clean-up treatment files
+     rm arr
+     
+ fi
+
+ # ---------------------------------------------
+
+ # ---------------------------------------------
+ # Secondary clean up of files
+ # ---------------------------------------------
+ export val=$(echo "X0")
+
+ if [[ $val == "X0" ]]
+ then 
+     
+     # get main path
+     # export cur_path=$(pwd)
+     # echo "cur_path:"
+     # echo $cur_path
+     
+     # Get path of folder to search
+     # export path_ingestion_folder=$(echo "${cur_path}/${folder_2_organize}")
+     # echo "path_ingestion_folder:"
+     # echo $path_ingestion_folder
+     
+     # find folders inside of the folder to search
+     cd $path_ingestion_folder
+     
+     # write folder names in file
+     ls -d */ >> folder_list
+    
+     # move folder contents into data
+     # export i=$(echo "Divvy_Stations_Trips_2013/")
+     for i in $(cat folder_list)
+     do
+       export new_path=$(echo "${path_ingestion_folder}/${i}")
+       echo "new_path:"
+       echo $new_path
+       
+       cd $new_path
+       
+       # Save an array of values 
+       # remove the text folder_list2 from the file, then remove blank or empty lines
+       ls  | sed 's/folder_list2//g' | sed '/^$/d' >> folder_list2
+       
+       #echo "contents of folder_list2:"
+       for j in $(cat folder_list2)
+       do
+  #echo $j
+  export new_path2=$(echo "${new_path}${j}")
+  #echo "new_path2:"
+  #echo $new_path2
+  mv $new_path2 $path_ingestion_folder 
+       done
+       
+       # delete folders
+       rm folder_list2
+       
+       cd $path_ingestion_folder
+       
+       rm -rf $i
+     done
+     
+     
+     rm folder_list
+    
+     # Recreate main folders
+     # --------------
+     # zipfile folder
+     mkdir zipdata
+     mv *.zip zipdata
+     # --------------
+     
+     # --------------
+     # csv folder
+     mkdir csvdata
+     mv *.csv csvdata
+     # --------------
+     
+     # --------------
+     # The rest in a folder
+     mkdir remaining_files
+     
+     find $path_ingestion_folder -maxdepth 1 -type f >> nondir_folder_list
+     
+     # remove the directory items from the file all_file_list
+     for i in $(cat nondir_folder_list)
+     do
+       mv $i remaining_files
+     done
+     
+     rm remaining_files/nondir_folder_list
+     # --------------
+
+ fi
+
+ # ---------------------------------------------
+
+}
+
+
+upload_csv_files(){
+ 
+    # Inputs:
+    # $1 = location
+    # $2 = cur_path
+    # $3 = dataset_name
+
+    cd $2
+    
+    
+    if [ -f file_list_names ]; then
+       rm file_list_names
+    fi
+  
+    if [ -f table_list_names ]; then
+       rm table_list_names
+    fi
+    
+    # Get list of csv files : do not remove the .csv for bq load
+    ls  | sed 's/file_list_names//g' | sed '/^$/d' >> file_list_names
+    
+    
+    # Generic name of tables
+    export Generic_CSV_FILENAME=$(cat file_list_names | head -n 1 | sed 's/.csv//g' | tr -d [0-9] | sed 's/-//g' | sed 's/  */ /g' | sed 's/^ *//g' | tr '[:upper:]' '[:lower:]' | sed -e '/[[:space:]]\+$/s///' | sed 's/[[:space:]]/_/g')
+    echo "Generic_CSV_FILENAME: "
+    echo $Generic_CSV_FILENAME 
+    
+    # Load CSV file into a BigQuery table FROM PC
+    cnt=0
+    for CSV_NAME in $(cat file_list_names)
+    do
+       echo "CSV_NAME: "
+       echo $CSV_NAME 
+       
+       # -----------------------------
+       # Edit csv file to prevent bq load errors : this section could get bigger
+       # -----------------------------
+       # Remove and from all csv files to prevent TIMESTAMP error 
+       # cat $CSV_NAME | sed 's///g' | sed 's///g' > temp_csv
+       # mv temp_csv $CSV_NAME
+       # -----------------------------
+       
+       # Use the csv file names directly
+       # remove the .csv from the filename
+       export TABLE_name=$(echo $CSV_NAME | sed 's/.csv//g')
+       
+       echo "TABLE_name: "
+       echo $TABLE_name
+       
+       # Need to save a list of TABLE_name, to do the UNION query next
+       echo $TABLE_name >> table_list_names
+       # OR
+       # Save tables to a dataset folder dedicated to one thing, and use bq ls to get table names in next query
+       
+       # Load with a specific schema: https://cloud.google.com/bigquery/docs/reference/bq-cli-reference#bq_load
+       # --schema=col_name0:STRING,col_name1:STRING,col_name2:INTEGER
+       
+       # Upload with schema options: autodetect the schema fields
+        bq load \
+            --location=$1 \
+            --source_format=CSV \
+            --skip_leading_rows=1 \
+            --autodetect \
+            $3.$TABLE_name \
+            ./$CSV_NAME
+            
+        cnt=$((cnt + 1))
+       
+    done
+
+}
+# ---------------------------
+# Functions END
+# ---------------------------
+
 
 
 
