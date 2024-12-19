@@ -87,9 +87,9 @@ function doGet() {
   // OR
   // var sheet_start_num = 1;  //if 0, it starts on cell row 1
   // var sheet_end_num = 1;
-  // var str_lettre = "A"
-  // var end_lettre = "A"
-  // var str_range = make_str_range(sheet_start_num, sheet_end_num, str_lettre, end_lettre)
+  // var str_letter = "A"
+  // var end_letter = "A"
+  // var str_range = make_str_range(sheet_start_num, sheet_end_num, str_letter, end_letter)
   // var data = sheet.getRange(str_range).getValues(); 
   // OR
   // start_row, start_column, num_of_row to count down, num_of_columns)
@@ -215,8 +215,8 @@ function doGet() {
 }
 
 
-function make_str_range(start_num, end_num, str_lettre, end_lettre){ 
-  return str_lettre.concat(start_num.toString(), ":", end_lettre, end_num.toString())
+function make_str_range(start_num, end_num, str_letter, end_letter){ 
+  return str_letter.concat(start_num.toString(), ":", end_letter, end_num.toString())
 }
 
 
